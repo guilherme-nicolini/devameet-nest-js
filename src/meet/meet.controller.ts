@@ -33,9 +33,8 @@ export class MeetController {
     @Delete(':id')
     async deleteMeet(@Request() req, @Param() params) {
         const { userId } = req?.user;
-        const { Id } = params;
-
-        await this.service.deleteMeetByUser(userId, Id);
+        const { id } = params;
+        await this.service.deleteMeetByUser(userId, id);
 
     }
 
