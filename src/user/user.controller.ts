@@ -1,6 +1,7 @@
-import { Controller, Get, Request, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Request, BadRequestException, Body, Put, HttpCode, HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserMesagesHeplper } from './helpers/messages.helper';
+import { UpdateUserDto } from './dtos/updateuser.dto';
 
 @Controller('user')
 export class UserController {
@@ -19,7 +20,14 @@ export class UserController {
             name: user.name,
             email: user.email,
             avatar: user.avatar,
-            iz: user._id
+            id: user._id
         }
+    }
+
+    @Put()
+    @HttpCode(HttpStatus.OK)
+    async updateUser(@Request() req, @Body() dto: UpdateUserDto) {
+        const { userId } = req?.user;
+        await this.userService.updateUser(userId, dto);
     }
 }
