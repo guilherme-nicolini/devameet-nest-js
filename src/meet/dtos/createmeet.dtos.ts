@@ -1,5 +1,5 @@
 import { Matches, MinLength } from "class-validator";
-import { MeetMessagesHelpers } from "../helpers/meetmessages.helpers";
+import { MeetMessagesHelpers } from "../helpers/meetmessages.helper";
 
 export class CreateMeetDto {
     @MinLength(2, { message: MeetMessagesHelpers.CREATE_NAME_NOT_VALID })
